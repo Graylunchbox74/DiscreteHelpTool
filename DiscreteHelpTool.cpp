@@ -318,12 +318,12 @@ vector<vector<int> > Graph::_multiplyMatrix(int pow) {
 	if (pow == 0) {
 		//TODO: SPECIAL CASE
 	} else {
-		for (int i = 1; i < pow - 1; i++) {
+		for (int i = 1; i < pow; i++) {
 			for (int r = 0; r < _nodes; r++) {
 				for (int c = 0; c < _nodes; c++) {
 					int val = 0;
 					for (int n = 0; n < _nodes; n++) {
-						val += tmpMat[r][n] * tmpMat[n][c];
+						val += tmpMat[r][n] * _adjacencyMatrix[n][c];
 					}
 
 					tmpMat2[r][c] = val;
