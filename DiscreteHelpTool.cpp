@@ -17,7 +17,7 @@ class Graph{
         void EditAdjacencyMatrix();
         void ShortestDistanceBetween();
         void IsThisGraphAcyclic();
-
+		void MultiplyMatrix();
     private:
         //fields
         vector<vector<int> > _adjacencyMatrix;
@@ -159,6 +159,27 @@ void Graph::IsThisGraphAcyclic(){
 
 }
 
+void Graph::MultiplyMatrix(){
+    cout << "What power do you want to multiply the matrix to: ";
+    int power;
+    cin >> power;
+    vector<vector<int> > NewMatrix;
+
+    for(int i = 1; i <= power; i++){
+        cout << "Power: " << i << endl;
+
+     NewMatrix = _multiplyMatrix(power);
+        for(int x = 0; x < _nodes; x++){
+            cout << "|";
+            for(int y = 0; y < _nodes; y++){
+                printf("%4d", NewMatrix[x][y]);
+                cout << "|";
+            }
+            cout << endl;
+        }
+
+    }
+}
 
     //private functions
 void Graph::_printMatrixForInput(int spot){
