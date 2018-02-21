@@ -318,7 +318,7 @@ vector<vector<int> > Graph::_multiplyMatrix(int pow) {
 	if (pow == 0) {
 		//TODO: SPECIAL CASE
 	} else {
-		for (int i = 1; i < pow; i++) {
+		for (int i = 1; i < pow - 1; i++) {
 			for (int r = 0; r < _nodes; r++) {
 				for (int c = 0; c < _nodes; c++) {
 					int val = 0;
@@ -337,14 +337,6 @@ vector<vector<int> > Graph::_multiplyMatrix(int pow) {
 			}
 		}
 	}
-
-	for (int r = 0; r < _nodes; r++) {
-		for (int c = 0; c < _nodes; c++) {
-			printf(" %4d",	tmpMat[r][c]);
-		}
-		printf("\n");
-	}
-
 
 	vector<vector<int> > ret;
 	vector<int> tmp;
