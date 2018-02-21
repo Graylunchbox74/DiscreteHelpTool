@@ -133,6 +133,7 @@ void Graph::ShortestDistanceBetween(){
 }
 
 
+
 void Graph::IsThisGraphAcyclic(){
 
     bool isAcyclic = true;
@@ -366,6 +367,7 @@ void GraphMainMenu(){
          << "3. Is there a Path Between"<<endl
          << "4. Shortest Distance Between"<<endl
          << "5. Is this Graph Acyclic"<<endl
+         << "6. Compute Walk Lengths"<<endl
          << "99. Exit"<<endl
          <<endl;
 
@@ -389,6 +391,9 @@ void GraphMainMenu(){
                         break;
                 case 5:
                         graph.IsThisGraphAcyclic();
+                        break;
+                case 6:
+                        graph.MultiplyMatrix();
                         break;
 
                 case 99:
