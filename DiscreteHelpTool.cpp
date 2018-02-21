@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
 #include <stdlib.h>
 #include <climits>
 #include <stack>
@@ -16,6 +17,7 @@ class Graph{
         void EditAdjacencyMatrix();
         void ShortestDistanceBetween();
         void IsThisGraphAcyclic();
+
     private:
         //fields
         vector<vector<int> > _adjacencyMatrix;
@@ -28,6 +30,7 @@ class Graph{
         bool _depthFirstSearchFor(int start, int end, int path[]);
         void _findAllShortestPaths();
         void _AcyclicTest();
+		vector<vector<int> > _multiplyMatrix(int pow);
 };
 
 Graph::Graph(int nodes){
@@ -257,27 +260,70 @@ void Graph::_AcyclicTest(){
     stack<int> depthStack;
 
 
-for(int x = 0; x < _nodes; x++){
-    for(int i = 0; i < _nodes; i++)
-        isUsed[i] = false;
-    depthStack.push(x);
-   // isUsed[x] = true;
-    while(!depthStack.empty()){
-        tmp = depthStack.top();
-        depthStack.pop();
-        for(int i = 0; i < _nodes; i++){
-            if(_adjacencyMatrix[tmp][i] != 0 && (isUsed[i] == false || i == x)){
-                if(i == x){
-                    _isCircuit[x] = false;
-                }
-                else{
-                isUsed[i] = true;
-                depthStack.push(i);
-                }
-            }
-        }
-    }
+	for(int x = 0; x < _nodes; x++){
+		for(int i = 0; i < _nodes; i++)
+			isUsed[i] = false;
+		depthStack.push(x);
+	   // isUsed[x] = true;
+		while(!depthStack.empty()){
+			tmp = depthStack.top();
+			depthStack.pop();
+			for(int i = 0; i < _nodes; i++){
+				if(_adjacencyMatrix[tmp][i] != 0 && (isUsed[i] == false || i == x)){
+					if(i == x){
+						_isCircuit[x] = false;
+					}
+					else{
+					isUsed[i] = true;
+					depthStack.push(i);
+					}
+				}
+			}
+		}
+	}
 }
+
+vector<vector<int> > Graph::_multiplyMatrix(int pow) {
+	int tmpMat[_nodes][_nodes];
+	int tmpMat2[_nodes][_nodes] = { 0 };
+
+	for (int r = 0; r < _nodes; r++) {
+		for (int c = 0; c < _nodes; c++) {
+			tmpMat[r][c] = _adjacencyMatrix[r][c];
+		}
+	}
+
+	if (pow == 0) {
+		//TODO: SPECIAL CASE
+	} else {
+		for (int i = 1; i < pow; i++) {
+			for (int r = 0; r < _nodes; r++) {
+				for (int c = 0; c < _nodes; c++) {
+					int val = 0;
+					for (int n = 0; n < _nodes; n++) {
+						val += tmpMat[r][n] * tmpMat[n][c];
+					}
+
+					tmpMat2[r][c] = val;
+				}
+			}
+
+			for (int r = 0; r < _nodes; r++) {
+				for (int c = 0; c < _nodes; c++) {
+					tmpMat[r][c] = tmpMat2[r][c];
+				}
+			}
+		}
+	}
+
+	for (int r = 0; r < _nodes; r++) {
+		for (int c = 0; c < _nodes; c++) {
+			printf(" %4d",	tmpMat[r][c]);
+		}
+		printf("\n");
+	}
+
+	return vector<vector<int> >();
 }
 
 
