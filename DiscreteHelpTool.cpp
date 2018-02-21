@@ -169,7 +169,7 @@ void Graph::MultiplyMatrix(){
     for(int i = 1; i <= power; i++){
         cout << "Power: " << i << endl;
 
-     NewMatrix = _multiplyMatrix(power);
+     NewMatrix = _multiplyMatrix(i);
         for(int x = 0; x < _nodes; x++){
             cout << "|";
             for(int y = 0; y < _nodes; y++){
