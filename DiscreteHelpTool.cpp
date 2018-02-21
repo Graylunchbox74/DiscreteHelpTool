@@ -306,7 +306,7 @@ void Graph::_AcyclicTest(){
 }
 
 vector<vector<int> > Graph::_multiplyMatrix(int pow) {
-	int tmpMat[_nodes][_nodes];
+	int tmpMat[_nodes][_nodes] = { 0 };
 	int tmpMat2[_nodes][_nodes] = { 0 };
 
 	for (int r = 0; r < _nodes; r++) {
@@ -345,7 +345,23 @@ vector<vector<int> > Graph::_multiplyMatrix(int pow) {
 		printf("\n");
 	}
 
-	return vector<vector<int> >();
+
+	vector<vector<int> > ret;
+	vector<int> tmp;
+	for (int i = 0; i < _nodes; i++)
+		tmp.push_back(0);
+
+	for (int i = 0; i < _nodes; i++)
+		ret.push_back(tmp);
+
+	for (int r = 0; r < _nodes; r++) {
+		for (int c = 0; c < _nodes; c++) {
+			ret[r][c] = tmpMat[r][c];
+		}
+	}
+
+
+	return ret;
 }
 
 
