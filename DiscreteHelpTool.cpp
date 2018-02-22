@@ -157,7 +157,6 @@ void Graph::IsThisGraphAcyclic(){
     else{
         cout << "Yes, this graph is Acyclic since it has no circuits" << endl;
     }
-
 }
 
 void Graph::MultiplyMatrix(){
@@ -176,6 +175,9 @@ void Graph::MultiplyMatrix(){
                 printf("%4d", NewMatrix[x][y]);
                 cout << "|";
             }
+            cout << endl;
+            for(int x = 0; x < _nodes * 5 + 1; x++)
+                cout << "-";
             cout << endl;
         }
 
@@ -375,7 +377,7 @@ void GraphMainMenu(){
          << "3. Is there a Path Between"<<endl
          << "4. Shortest Distance Between"<<endl
          << "5. Is this Graph Acyclic"<<endl
-         << "6. Compute Walk Lengths"<<endl
+         << "6. Compute Walk Lengths by multipliplying matrix"<<endl
          << "99. Exit"<<endl
          <<endl;
 
